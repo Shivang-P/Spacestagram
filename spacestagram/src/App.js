@@ -4,9 +4,10 @@ import Card from "./components/Card";
 function App() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true)
+  const [visible, setVisible] = useState(8)
 
   useEffect(() => {
-    fetch(`https://api.nasa.gov/planetary/apod?count=10&api_key=HHJjvSgULinveAxqECpA9oZoASBYWujurCkcmDHF`)
+    fetch(`https://api.nasa.gov/planetary/apod?count=100&api_key=HHJjvSgULinveAxqECpA9oZoASBYWujurCkcmDHF`)
     .then(res => res.json())
     .then(data => {
       setImages(data)
@@ -14,6 +15,10 @@ function App() {
     })
     .catch(error => console.log(error))
   }, [])
+
+  function loadMore() {
+    setVisible(visible + 9)
+  }
 
   return (
     <div>
@@ -35,13 +40,14 @@ function App() {
                   <img src={image.url} class="rounded-box" />
                 </div> 
               ))}
-            </div>
+      </div>
       <div className="container mx-auto">
         {loading ? <div className="mx-3 my-3 alert alert-error">Loading...</div>
  : <div className="grid grid-cols-3 gap-4 mx-7 my-3">
-          {images.map(image => (
+          {images.slice(0, visible).map(image => (
             <Card key={image.title} image={image} />
           ))}
+          <button className="btn btn-primary" onClick={loadMore}>LOAD MORE</button>
         </div>}
       </div>
     </div>
