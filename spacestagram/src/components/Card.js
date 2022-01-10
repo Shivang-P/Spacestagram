@@ -12,17 +12,17 @@ function Card({ image }) {
     }
 
     return (
-        <div class="card card-compact lg:card-normal card-bordered shadow-lg">
+        <div class="card bg-base-200 card-compact lg:card-normal card-bordered shadow-lg">
             <figure>
                 <img src={image.hdurl}/>
             </figure> 
             <div class="card-body">
                 <h2 class="card-title">{image.title} - {image.date}
                 </h2> 
-                <div class="badge mb-2">Image</div>
+                <div class="badge badge-primary mb-2">Image</div>
                 <p>{image.explanation}</p> 
                 <div class="card-actions">
-                    <button class={liked ? "btn btn-secondary" : "btn btn-secondary btn-outline"} onClick={toggleLiked}>{
+                    <button class={liked ? "btn btn-primary" : "btn btn-primary btn-outline"} onClick={toggleLiked}>{
                         liked ? <FontAwesomeIcon icon={fasHeart}/> : <FontAwesomeIcon icon={farHeart}/>
                     }</button> 
                 </div>
