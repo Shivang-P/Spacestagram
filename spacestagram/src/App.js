@@ -4,10 +4,10 @@ import Card from "./components/Card";
 function App() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true)
-  const [visible, setVisible] = useState(8)
+  const [visible, setVisible] = useState(9)
 
   useEffect(() => {
-    fetch(`https://api.nasa.gov/planetary/apod?count=100&api_key=HHJjvSgULinveAxqECpA9oZoASBYWujurCkcmDHF`)
+    fetch(`https://api.nasa.gov/planetary/apod?count=99&api_key=HHJjvSgULinveAxqECpA9oZoASBYWujurCkcmDHF`)
     .then(res => res.json())
     .then(data => {
       setImages(data)
@@ -42,13 +42,17 @@ function App() {
               ))}
       </div>
       <div className="container mx-auto">
-        {loading ? <div className="mx-3 my-3 alert alert-error">Loading...</div>
- : <div className="grid grid-cols-3 gap-4 mx-7 my-3">
-          {images.slice(0, visible).map(image => (
-            <Card key={image.title} image={image} />
-          ))}
-          <button className="btn btn-primary" onClick={loadMore}>LOAD MORE</button>
-        </div>}
+        {loading ? <button class="btn w-full my-3 loading">Please wait while we load the images...</button> : <div>
+          <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4 mx-7 my-3">
+            {images.slice(0, visible).map(image => (
+              <Card key={image.title} image={image} />
+            ))}
+          </div>
+          <div className="grid grid-cols-1 gap-4 mx-7 my-5">
+            <button className="btn btn-primary" onClick={loadMore}>LOAD MORE</button>
+          </div>
+        </div>
+        }
       </div>
     </div>
   );
