@@ -8,3 +8,4 @@ Additional Features include:
 - Heart Like Animation
 - Carousel of all images on top of page
 - Infinite Scrolling (Load more)
+- Perfect Accessibility Score
