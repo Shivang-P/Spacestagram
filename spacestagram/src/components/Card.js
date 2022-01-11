@@ -22,7 +22,7 @@ function Card({ image }) {
                 <div class="badge badge-primary mb-2">Image</div>
                 <p>{image.explanation}</p> 
                 <div class="card-actions">
-                    <button class={liked ? "btn btn-primary" : "btn btn-primary btn-outline"} onClick={toggleLiked}>{
+                    <button aria-label={`Like ${image.title}`} class={liked ? "btn btn-primary" : "btn btn-primary btn-outline"} onClick={toggleLiked}>{
                         liked ? <FontAwesomeIcon icon={fasHeart}/> : <FontAwesomeIcon icon={farHeart}/>
                     }</button> 
                 </div>
